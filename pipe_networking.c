@@ -31,16 +31,16 @@ int server_handshake(int *to_client) {
       printf("Subserver sending an intial acknowledgement message...\n ");
       *to_client = open("ppipe", O_WRONLY);
       write(*to_client, ACK, sizeof(ACK));
-    
+
       printf("Server receiving client's message...\n");
       char m[BUFFER_SIZE];
       read(wkpfd, m, BUFFER_SIZE);
       printf("Message from client: %s\n", m);
+      return wkpfd;
     }
-    return wkpfd;
   }
 }
-//FINISHED SERVER_HANDSHAKE AND START CLIENT HANDSHAKE 
+//FINISHED SERVER_HANDSHAKE AND START CLIENT HANDSHAKE
 
 /*=========================
   client_handshake
@@ -67,9 +67,9 @@ int client_handshake(int *to_server) {
   printf("Message from server: %s\n", r);
   printf("Client removing private FIFO...\n");
   remove("ppipe");
-  
+
   printf("Client sending response to server...\n");
   write(*to_server, ACK, sizeof(ACK));
-  
+
   return ppfd;
 }
