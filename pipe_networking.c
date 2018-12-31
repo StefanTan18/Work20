@@ -40,7 +40,6 @@ int server_handshake(int *to_client) {
     }
   }
 }
-//FINISHED SERVER_HANDSHAKE AND START CLIENT HANDSHAKE
 
 /*=========================
   client_handshake
